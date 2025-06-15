@@ -20,7 +20,7 @@ namespace UI
       });
 
       continueButton.onClick.AddListener(() => {
-        Loader.Load(Loader.Scene.LoadingScene);
+        Loader.Load(Loader.Scene.GameplayScene);
       });
 
       quitButton.onClick.AddListener(() => {
