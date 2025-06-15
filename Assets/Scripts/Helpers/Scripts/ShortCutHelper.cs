@@ -1,18 +1,21 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ShortCutHelper : MonoBehaviour
+namespace Assets.Scripts.Helpers.Scripts
 {
-  void Update()
+  public class ShortCutHelper : MonoBehaviour
   {
-    // Detectar Ctrl (o Cmd en macOS) + A
-    if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-        && Input.GetKeyDown(KeyCode.Escape))
+    static void Update()
     {
-      // Opcional: desbloquear cursor si estuvo bloqueado
-      Cursor.lockState = CursorLockMode.None;
-      // Cambo de escena
-      SceneManager.LoadScene(Loader.Scene.MainMenuScene.ToString());
+      // Detectar Ctrl (o Cmd en macOS) + A
+      if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+          && Input.GetKeyDown(KeyCode.Escape))
+      {
+        // Opcional: desbloquear cursor si estuvo bloqueado
+        Cursor.lockState = CursorLockMode.None;
+        // Cambo de escena
+        SceneManager.LoadScene(Loader.Scene.MainMenuScene.ToString());
+      }
     }
   }
 }

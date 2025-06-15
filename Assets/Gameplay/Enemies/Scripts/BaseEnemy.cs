@@ -1,26 +1,29 @@
 using UnityEngine;
 
-public abstract class BaseEnemy: MonoBehaviour
+namespace Assets.Gameplay.Enemies.Scripts
 {
-  [Header("Stats")]
-  public int level = 1;
-  public float maxHealth = 100f;
-  protected float currentHealth;
-  public float speed = 2f;
-
-  protected virtual void Awake()
+  public abstract class BaseEnemy : MonoBehaviour
   {
-    currentHealth = maxHealth;
-  }
+    [Header("Stats")]
+    public int level = 1;
+    public float maxHealth = 100f;
+    protected float currentHealth;
+    public float speed = 2f;
 
-  public virtual void TakeDamage(float amount)
-  {
-    currentHealth -= amount;
-    if (currentHealth <= 0) Die();
-  }
+    protected virtual void Awake()
+    {
+      currentHealth = maxHealth;
+    }
 
-  protected virtual void Die()
-  {
-    Destroy(gameObject);
+    public virtual void TakeDamage(float amount)
+    {
+      currentHealth -= amount;
+      if (currentHealth <= 0) Die();
+    }
+
+    protected virtual void Die()
+    {
+      Destroy(gameObject);
+    }
   }
 }

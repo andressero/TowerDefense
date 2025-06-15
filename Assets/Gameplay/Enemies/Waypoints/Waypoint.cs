@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class Waypoint : MonoBehaviour
+namespace Assets.Gameplay.Enemies.Waypoints
 {
+  public class Waypoint : MonoBehaviour
+  {
     public Transform[] waypoints;
+  }
 }
