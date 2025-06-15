@@ -2,25 +2,37 @@ using UnityEngine;
 
 namespace Assets.Gameplay.Enemies.Scripts
 {
-  public abstract class BaseEnemy : MonoBehaviour
+  public class EnemyStats
   {
-    [Header("Stats")]
+    public float MaxHealth { get; }
+    public float CurrentHealth { get; private set; }
+
+    public EnemyStats(float maxHealth)
+    {
+      MaxHealth = maxHealth;
+      CurrentHealth = maxHealth;
+    }
+
+    public bool TakeDamage(float amount)
+    {
+      CurrentHealth -= amount;
+      return CurrentHealth <= 0;
+    }
+  }
+
+  // MonoBehaviour delegate
+  public class BaseEnemy : MonoBehaviour
+  {
     public int level = 1;
     public float maxHealth = 100f;
-    protected float currentHealth;
-    public float speed = 2f;
+    private EnemyStats stats;
 
-    protected virtual void Awake()
+    void Awake() => stats = new EnemyStats(maxHealth);
+    public void TakeDamage(float amount)
     {
-      currentHealth = maxHealth;
+      bool died = stats.TakeDamage(amount);
+      if (died) Die();
     }
-
-    public virtual void TakeDamage(float amount)
-    {
-      currentHealth -= amount;
-      if (currentHealth <= 0) Die();
-    }
-
     protected virtual void Die()
     {
       Destroy(gameObject);
